@@ -2,7 +2,52 @@ package hust.soict.it1.aims.media;
 
 import hust.soict.it1.aims.media.Media;
 
-public class DigitalVideoDisc extends Disc implements Playable {
+public class DigitalVideoDisc   {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    public String director;
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
+    }
+
+    public int length;
+    public float cost;
+    private String title;
+    private String category;
 
     public DigitalVideoDisc(String title){
         setTitle(title);
@@ -32,10 +77,5 @@ public class DigitalVideoDisc extends Disc implements Playable {
         for (String key : title.split(" "))
 	        r= r&& getTitle().contains(key);
         return r;
-    }
-    @Override
-    public void play(){
-        System.out.println("Playing DVD: " + this.getTitle());
-        System.out.println("DVD length: " + this.getLength());
     }
 }

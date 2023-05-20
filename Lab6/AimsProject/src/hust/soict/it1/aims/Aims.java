@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 import hust.soict.it1.aims.media.*;
 import hust.soict.it1.aims.order.Order;
-import hust.soict.oop.aims.MemoryDaemon;
 
 public class Aims {
 	static Order order;
@@ -53,70 +52,17 @@ public class Aims {
 				return;
 			createOrder();
 		}
-		String type;
-		System.out.print("Item's type? ");
-		type = stdin.nextLine();
-		if(type.equalsIgnoreCase("Book")){
-			String title, category,author;
-			float cost;
-			Book item;
-			System.out.print("Item's name? ");
-			title = stdin.nextLine();
-			System.out.print("Item's category? ");
-			category = stdin.nextLine();
-			System.out.print("Item's cost? ");
-			cost = stdin.nextFloat();
-			stdin.nextLine();
-			item = new Book(title, category);
-			item.setCost(cost);
-			System.out.print("Item's author? (Blank to skip) ");
-			while(true){
-				author=stdin.nextLine();
-				if(author.isBlank()){
-					break;
-				}
-				item.authors.add(author);
-				System.out.print("Item's next author? (Blank to skip) ");
-			}
-			order.addMedia(item);
-		} else if(type.equalsIgnoreCase("DigitalVideoDisc")){
-			String title, category,director;
-			float cost;
-			int length;
-			DigitalVideoDisc item;
-			System.out.print("Item's name? ");
-			title = stdin.nextLine();
-			System.out.print("Item's category? ");
-			category = stdin.nextLine();
-			System.out.print("Item's cost? ");
-			cost = stdin.nextFloat();
-			System.out.print("Item's length? ");
-			length = stdin.nextInt();
-			System.out.print("Item's director? ");
-			director = stdin.nextLine();
-			item = new DigitalVideoDisc(title, category,director,length,cost);
-			order.addMedia(item);
-		} else if(type.equalsIgnoreCase("CompactDisc")){
-			String title,artist;
-			int length;
-			System.out.print("Item's artist? ");
-			artist = stdin.nextLine();
-			CompactDisc item=new CompactDisc(artist);
-			System.out.print("New track's title? (Blank to skip) ");
-			title=stdin.nextLine();
-			while(!title.isEmpty()){
-				Track a= new Track();
-				a.setTitle(title);
-				System.out.print("-> New track's length?");
-				length=stdin.nextInt();
-				stdin.nextLine();
-				a.setLength(length);
-				item.addTrack(a);
-				System.out.print("New track's title? (Blank to skip) ");
-				title=stdin.nextLine();
-			}
-		}
-
+		String title, category;
+		float cost;
+		System.out.print("Item name? ");
+		title = stdin.nextLine();
+		System.out.print("Item category? ");
+		category = stdin.nextLine();
+		System.out.print("Item cost? ");
+		cost = stdin.nextFloat();
+		Media item = new Media(title, category);
+		item.setCost(cost);
+		order.addMedia(item);
 	}
 	private static void removeItems() {
 		if (order == null) {
@@ -135,10 +81,6 @@ public class Aims {
 		order.print();
 	}
 	public static void main(String[] args) {
-		MemoryDaemon memoryWatcher = new MemoryDaemon();
-		Thread memoryWatcherThread = new Thread(memoryWatcher);
-		memoryWatcherThread.setDaemon(true);
-		memoryWatcherThread.start();
 		while (running) {
 			showMenu();
 			String opt = stdin.nextLine();
