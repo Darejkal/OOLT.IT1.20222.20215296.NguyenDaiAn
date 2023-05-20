@@ -1,6 +1,6 @@
 package hust.soict.it1.aims.media;
 
-public class Media extends java.lang.Object {
+public abstract class Media extends java.lang.Object {
     public static int getNextId() {
         return NEXT_ID;
     }
